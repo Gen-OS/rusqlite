@@ -53,6 +53,7 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: bash tools/repo_setup.sh
       # This has a matcher for test panics, so we use it even though elsewhere
       # we use actions-rs/toolchain.
       - uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c # v2.0.1
@@ -66,8 +67,6 @@ jobs:
       # slow, and has several deps.
       - uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84 # v2.7.3
         with: { shared-key: fullBuild }
-
-      - run: bash tools/repo_setup.sh
       - run: cargo build --features bundled --workspace --all-targets --verbose
       - run: cargo test --features bundled --workspace --all-targets --verbose
       - run: cargo test --features bundled --workspace --doc --verbose
@@ -115,6 +114,7 @@ jobs:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       # This has a matcher for test panics, so we use it even though elsewhere
       # we use actions-rs/toolchain.
+      - run: bash tools/repo_setup.sh
       - uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c # v2.0.1
         with:
           rust-version: stable${{ matrix.host }}
@@ -122,7 +122,6 @@ jobs:
       - uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84 # v2.7.3
         with: { shared-key: fullBuild }
 
-      - run: bash tools/repo_setup.sh
       - run: cargo test --features 'bundled-sqlcipher' --workspace --all-targets --verbose
       - run: cargo test --features 'bundled-sqlcipher' --workspace --doc --verbose
 
@@ -152,9 +151,9 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: bash tools/repo_setup.sh
       - uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c # v2.0.1
       - uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84 # v2.7.3
-      - run: bash tools/repo_setup.sh
       - run: sudo apt-get install sqlcipher libsqlcipher-dev
       - run: sqlcipher --version
       # TODO: Is it worth testing other features?
@@ -171,13 +170,13 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: bash tools/repo_setup.sh
       # Need nightly rust.
       - uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c # v2.0.1
         with:
           rust-version: nightly
           components: rust-src
       - uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84 # v2.7.3
-      - run: bash tools/repo_setup.sh
       - name: Tests with asan
         env:
           RUSTFLAGS: -Zsanitizer=address -Cdebuginfo=0
@@ -200,11 +199,11 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: bash tools/repo_setup.sh
       - uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c # v2.0.1
         with:
           rust-version: nightly
       - uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84 # v2.7.3
-      - run: bash tools/repo_setup.sh
       - run: cargo update -Z direct-minimal-versions
       - run: cargo test --workspace --all-targets --features bundled-full
 
@@ -219,11 +218,11 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: bash tools/repo_setup.sh
       - uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c # v2.0.1
         with:
           components: clippy
       - uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84 # v2.7.3
-      - run: bash tools/repo_setup.sh
       - run: cargo clippy --all-targets --workspace --features bundled -- -D warnings
       # Clippy with all non-conflicting features
       - run: cargo clippy --all-targets --workspace --features 'bundled-full session buildtime_bindgen preupdate_hook' -- -D warnings
@@ -239,10 +238,10 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: bash tools/repo_setup.sh
       - uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c # v2.0.1
         with:
           components: rustfmt
-      - run: bash tools/repo_setup.sh
       - run: cargo fmt --all -- --check
 
   # Detect cases where documentation links don't resolve and such.
@@ -256,10 +255,10 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: bash tools/repo_setup.sh
       - uses: hecrj/setup-rust-action@110f36749599534ca96628b82f52ae67e5d95a3c # v2.0.1
       - uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84 # v2.7.3
         with: { shared-key: fullBuild }
-      - run: bash tools/repo_setup.sh
       - run: cargo doc --features 'bundled-full session buildtime_bindgen preupdate_hook' --no-deps
         env: { RUSTDOCFLAGS: -Dwarnings }
 
@@ -274,13 +273,13 @@ jobs:
           egress-policy: audit
 
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - run: bash tools/repo_setup.sh
       - uses: dtolnay/rust-toolchain@ed2356ad628626a6b3f5be6c3e0255c0454fcdb9 # stable
         with:
           components: "llvm-tools-preview"
       - uses: taiki-e/install-action@0241d8f41268099ddeaaff7ba926944e96de977a # main
         with:
           tool: grcov
-      - run: bash tools/repo_setup.sh
       - name: Run tests for coverage
         run: |
           cargo test --verbose
