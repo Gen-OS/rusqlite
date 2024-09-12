@@ -2,11 +2,18 @@
 # https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
 
 version: 2
+
+registries:
+  genos-crates:
+    type: cargo
+    url: https://genos.jfrog.io/artifactory/api/cargo/genos-cargo-local/index/
+    token: ${{ secrets.GENOS_REPO_TOKEN }}
+
 updates:
   - package-ecosystem: "cargo"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
 
   - package-ecosystem: github-actions
     directory: /
