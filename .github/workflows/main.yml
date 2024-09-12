@@ -18,12 +18,11 @@ env:
   # We can't use a debugger in CI, and this makes builds faster and the cache
   # smaller. (TODO: use -Cdebuginfo=0 if it doesn't make backtraces useless)
   RUSTFLAGS: -Cdebuginfo=1
+  # Authorize private repository.
+  GENOS_REPO_TOKEN: ${{ secrets.GENOS_REPO_TOKEN }}
 
 permissions:
   contents: read
-
-env:
-  GENOS_REPO_TOKEN: ${{ secrets.GENOS_REPO_TOKEN }}
 
 concurrency:
   group: ${{ github.ref }}
