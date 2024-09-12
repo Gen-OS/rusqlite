@@ -152,6 +152,7 @@ bencher = "0.1"
 [dependencies.libsqlite3-sys]
 path = "libsqlite3-sys"
 version = "0.30.2-genos.1"
+registry = "genos"
 
 [[test]]
 name = "auto_ext"
