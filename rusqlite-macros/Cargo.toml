@@ -1,6 +1,6 @@
 [package]
 name = "rusqlite-macros"
-version = "0.3.0"
+version = "0.3.0-genos.1"
 authors = ["The rusqlite developers"]
 edition = "2021"
 description = "Private implementation detail of rusqlite crate"
