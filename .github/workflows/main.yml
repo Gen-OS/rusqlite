@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - master
+      - genos
   pull_request:
     branches:
       - master
+      - genos
   schedule:
     - cron: "00 01 * * *"
 env:
