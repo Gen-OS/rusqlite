@@ -1,0 +1,3 @@
+[registries.genos]
+index = "sparse+https://genos.jfrog.io/artifactory/api/cargo/genos-cargo-local/index/"
+credential-provider = "cargo:token"
