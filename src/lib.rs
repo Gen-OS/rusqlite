@@ -69,10 +69,8 @@ use std::sync::{Arc, Mutex};
 use crate::cache::StatementCache;
 use crate::inner_connection::InnerConnection;
 use crate::types::ValueRef;
+use crate::raw_statement::RawStatement;
 pub use crate::cache::CachedStatement;
-
-// Public types exposed for use by LittleDB.
-pub use crate::raw_statement::RawStatement;
 
 #[cfg(feature = "column_decltype")]
 pub use crate::column::Column;
