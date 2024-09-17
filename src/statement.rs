@@ -851,7 +851,7 @@ impl Statement<'_> {
     }
 
     #[inline]
-    pub(super) fn step(&self) -> Result<bool> {
+    pub fn step(&self) -> Result<bool> {
         match self.stmt.step() {
             ffi::SQLITE_ROW => Ok(true),
             ffi::SQLITE_DONE => Ok(false),
