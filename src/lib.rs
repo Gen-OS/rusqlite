@@ -51,7 +51,6 @@
 //!     Ok(())
 //! }
 //! ```
-#![warn(missing_docs)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 pub use libsqlite3_sys as ffi;
@@ -69,10 +68,12 @@ use std::sync::{Arc, Mutex};
 
 use crate::cache::StatementCache;
 use crate::inner_connection::InnerConnection;
-use crate::raw_statement::RawStatement;
 use crate::types::ValueRef;
-
 pub use crate::cache::CachedStatement;
+
+// Public types exposed for use by LittleDB.
+pub use crate::raw_statement::RawStatement;
+
 #[cfg(feature = "column_decltype")]
 pub use crate::column::Column;
 pub use crate::error::{to_sqlite_error, Error};
@@ -381,6 +382,7 @@ pub struct Connection {
 }
 
 unsafe impl Send for Connection {}
+unsafe impl Sync for Connection {}
 
 impl Drop for Connection {
     #[inline]

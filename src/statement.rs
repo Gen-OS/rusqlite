@@ -19,6 +19,9 @@ pub struct Statement<'conn> {
     pub(crate) stmt: RawStatement,
 }
 
+unsafe impl Send for Statement<'static> {}
+unsafe impl Sync for Statement<'static> {}
+
 impl Statement<'_> {
     /// Execute the prepared statement.
     ///
@@ -750,7 +753,7 @@ impl Statement<'_> {
     /// connection has closed is illegal, but `RawStatement` does not enforce
     /// this, as it loses our protective `'conn` lifetime bound.
     #[inline]
-    pub(crate) unsafe fn into_raw(mut self) -> RawStatement {
+    pub unsafe fn into_raw(mut self) -> RawStatement {
         let mut stmt = RawStatement::new(ptr::null_mut(), 0);
         mem::swap(&mut stmt, &mut self.stmt);
         stmt
@@ -787,7 +790,7 @@ impl Drop for Statement<'_> {
 
 impl Statement<'_> {
     #[inline]
-    pub(super) fn new(conn: &Connection, stmt: RawStatement) -> Statement<'_> {
+    pub fn new(conn: &Connection, stmt: RawStatement) -> Statement<'_> {
         Statement { conn, stmt }
     }
 
