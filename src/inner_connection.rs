@@ -38,6 +38,7 @@ pub struct InnerConnection {
     owned: bool,
 }
 
+unsafe impl Sync for InnerConnection {}
 unsafe impl Send for InnerConnection {}
 
 impl InnerConnection {

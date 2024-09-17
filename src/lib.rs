@@ -379,6 +379,12 @@ pub struct Connection {
     transaction_behavior: TransactionBehavior,
 }
 
+impl Clone for Connection {
+    fn clone(&self) -> Self {
+        unsafe { Connection::from_handle(self.handle()).expect("failed to clone connection") }
+    }
+}
+
 unsafe impl Send for Connection {}
 unsafe impl Sync for Connection {}
 
