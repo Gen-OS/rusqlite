@@ -66,11 +66,11 @@ use std::result;
 use std::str;
 use std::sync::{Arc, Mutex};
 
+pub use crate::cache::CachedStatement;
 use crate::cache::StatementCache;
 use crate::inner_connection::InnerConnection;
-use crate::types::ValueRef;
 use crate::raw_statement::RawStatement;
-pub use crate::cache::CachedStatement;
+use crate::types::ValueRef;
 
 #[cfg(feature = "column_decltype")]
 pub use crate::column::Column;
