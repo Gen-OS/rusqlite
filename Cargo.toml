@@ -38,6 +38,7 @@ load_extension = []
 backup = []
 # sqlite3_blob_reopen: 3.7.4
 blob = []
+codec = ["libsqlite3-sys/codec"]
 collation = []
 # sqlite3_create_function_v2: 3.7.3 (2010-10-08)
 functions = []
@@ -93,6 +94,7 @@ modern-full = [
     "blob",
     "modern_sqlite",
     "chrono",
+    "codec",
     "collation",
     "column_decltype",
     "csvtab",

@@ -18,6 +18,7 @@ bundled-windows = ["cc", "bundled_bindings"]
 bundled-sqlcipher = ["bundled"]
 bundled-sqlcipher-vendored-openssl = ["bundled-sqlcipher", "openssl-sys/vendored"]
 buildtime_bindgen = ["bindgen", "pkg-config", "vcpkg"]
+codec = []
 sqlcipher = []
 min_sqlite_version_3_14_0 = ["pkg-config", "vcpkg"]
 # Bundle only the bindings file. Note that this does nothing if
