@@ -576,7 +576,7 @@ mod bindings {
                 .blocklist_function("sqlite3_prepare");
         }
 
-        if cfg!(any(feature = "sqlcipher", feature = "bundled-sqlcipher")) {
+        if cfg!(any(feature = "codec", feature = "sqlcipher", feature = "bundled-sqlcipher")) {
             bindings = bindings.clang_arg("-DSQLITE_HAS_CODEC");
         }
         if cfg!(feature = "unlock_notify") {

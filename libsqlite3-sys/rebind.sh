@@ -17,11 +17,11 @@ rm -f "$SQLITE3_LIB_DIR/bindgen_bundled_version.rs"
 cargo update --quiet
 # Just to make sure there is only one bindgen.rs file in target dir
 find "$TARGET_DIR" -type f -name bindgen.rs -exec rm {} \;
-env LIBSQLITE3_SYS_BUNDLING=1 cargo build --features "buildtime_bindgen" --no-default-features
+env LIBSQLITE3_SYS_BUNDLING=1 cargo build --features "buildtime_bindgen codec" --no-default-features
 find "$TARGET_DIR" -type f -name bindgen.rs -exec mv {} "$SQLITE3_LIB_DIR/bindgen_bundled_version.rs" \;
 
 # Sanity checks
 cd "$SCRIPT_DIR/.." || { echo "fatal error" >&2; exit 1; }
 cargo update --quiet
-cargo test --features "backup blob chrono functions load_extension serde_json vtab bundled"
+cargo test --features "backup blob chrono codec functions load_extension serde_json vtab bundled"
 printf '    \e[35;1mFinished\e[0m bundled sqlite3 tests\n'
