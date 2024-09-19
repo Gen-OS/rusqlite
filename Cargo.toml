@@ -103,7 +103,6 @@ modern-full = [
     "hooks",
     "i128_blob",
     "jiff",
-    "limits",
     "load_extension",
     "serde_json",
     "series",
