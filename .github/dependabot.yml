@@ -4,7 +4,7 @@ registries:
   genos-crates:
     type: cargo-registry
     registry: genos
-    url: https://genos.jfrog.io/artifactory/api/cargo/genos-cargo-local/index/
+    url: https://crates.genos.dev/artifactory/api/cargo/crates/index/
     token: "Bearer ${{ secrets.GENOS_REPO_TOKEN }}"
 
 updates:
