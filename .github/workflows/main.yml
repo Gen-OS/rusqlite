@@ -277,7 +277,7 @@ jobs:
       - uses: dtolnay/rust-toolchain@ed2356ad628626a6b3f5be6c3e0255c0454fcdb9 # stable
         with:
           components: "llvm-tools-preview"
-      - uses: taiki-e/install-action@60af41b562f5ae1b016044abdc6124a44635cce2 # main
+      - uses: taiki-e/install-action@ede617189e3c81af2b3a130eb76d0054785dfb5e # main
         with:
           tool: grcov
       - name: Run tests for coverage
